@@ -8,10 +8,10 @@ def user_connect():
     and prints the status of connection
     """
 
-    h  = 'localhost'    # Name of Host
-    u  = 'root'         # Name of User
-    pw = 'password1234' # Password
-    db = 'sys'          # Name of Database
+    h  = 'localhost'    # Name of Host      ** Make changes accordingly
+    u  = 'root'         # Name of User      ** Make changes accordingly
+    pw = 'password1234' # Password          ** Make changes accordingly
+    db = 'sys'          # Name of Database  ** Make changes accordingly
 
     try :
         connection = c.connect(host = h, database = db, user = u, password = pw)
