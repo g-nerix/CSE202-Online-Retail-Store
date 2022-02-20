@@ -49,6 +49,6 @@ def create_database(cursor):
         print("Creating online_retail Database...")
 
     cursor.execute("USE online_retail;")
-    print("Using online_retail...")
+    print("Using online_retail Database...")
 
 # def populate_database():
