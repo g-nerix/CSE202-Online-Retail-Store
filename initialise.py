@@ -6,6 +6,8 @@ def user_connect():
     """
     connects the python application to mysql server
     and prints the status of connection
+    :param:
+    :return boolean, cursor, connection:
     """
 
     h  = 'localhost'    # Name of Host      ** Make changes accordingly
@@ -30,6 +32,12 @@ def user_connect():
         return False
 
 def create_database(cursor):
+    """
+    Creates database online_retail if it doesn't exist
+    else opens the existing online_retail database
+    :param cursor:
+    :return:
+    """
     cursor.execute("show databases;")
     record = cursor.fetchall()
     new = True
