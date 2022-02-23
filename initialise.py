@@ -23,8 +23,8 @@ def user_connect():
             cursor = connection.cursor()
             cursor.execute("select database();")
             record = cursor.fetchone()
-            print("You're currently connected to database:", record[0])
-            print("Searching for online_retail database...")
+            # print("\nYou're currently connected to database:", record[0])
+            print("\nSearching for online_retail database...")
             return True, cursor, connection
 
     except Error as e:
@@ -45,7 +45,7 @@ def create_database(cursor):
         if i[0] == "online_retail":
             new = False
     if new:
-        print("online_retail Database NOT Found !!")
+        print("\nonline_retail Database NOT Found !!")
         cursor.execute("CREATE DATABASE online_retail;")
         print("Creating new online_retail Database...")
 
@@ -65,7 +65,15 @@ def create_table(cursor):
 
     cursor.execute("SHOW TABLES")
     record = cursor.fetchall()
-    print("Searching for Employee table...")
+
+    print("\nSearching for Employee table...")
+    print("Searching for Address table...")
+    print("Searching for Inventory table...")
+    print("Searching for Customer table...")
+    print("Searching for Wishlist table...")
+    print("Searching for Customer_Cart table...")
+    print("Searching for Customer_Order table...\n")
+
     for i in record:
         if i[0] == "employee":
             new_employee = False
@@ -130,5 +138,6 @@ def create_table(cursor):
         cursor.execute("create table customer_order (Item_id INT,Username VARCHAR(50),Order_date DATETIME,Shipping_date DATE,Order_cost INT,Payment_mode VARCHAR(50));")
     else:
         print("Customer_Order table already exists !!")
-
+    print("----------------------------")
     print("Created all required Tables")
+    print("----------------------------")
