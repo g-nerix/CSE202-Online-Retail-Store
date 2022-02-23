@@ -130,3 +130,5 @@ def create_table(cursor):
         cursor.execute("create table customer_order (Item_id INT,Username VARCHAR(50),Order_date DATETIME,Shipping_date DATE,Order_cost INT,Payment_mode VARCHAR(50));")
     else:
         print("Customer_Order table already exists !!")
+
+    print("Created all required Tables")
