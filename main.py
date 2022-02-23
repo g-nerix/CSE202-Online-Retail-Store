@@ -9,5 +9,5 @@ if __name__ == '__main__':
     is_connected, cursor, connection = initialise.user_connect()
     if(is_connected):
         initialise.create_database(cursor)
-
+        initialise.create_table(cursor)
 
