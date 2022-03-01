@@ -1,4 +1,4 @@
-cust_id,first_name,last_name,phone_no,email,house_no,locality,city,state,country,pin_code,username,password
+cust_id,first_name,last_name,phone_no,email,house_no,locality,city,state,country,pin_code,username,pass_word
 1,Melinde,Cammacke,7193342713,mcammacke0@examiner.com,19323,8th,Colorado Springs,Colorado,United States,809351,mcammacke0,ymknkeQ
 2,Minna,Westgate,7024360965,mwestgate1@infoseek.co.jp,1,Dapin,Las Vegas,Nevada,United States,891101,mwestgate1,TgtwTEb2
 3,Hewe,Tolputt,8597161335,htolputt2@paypal.com,90352,Red Cloud,Lexington,Kentucky,United States,405241,htolputt2,tFT2qaR
