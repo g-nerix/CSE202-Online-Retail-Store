@@ -169,6 +169,7 @@ def create_table(cursor):
                        "`locality` varchar(25) NOT NULL," +
                        "`city` varchar(20) NOT NULL," +
                        "`state` varchar(30) NOT NULL," +
+                       "`country` varchar(20) NOT NULL,"+
                        "`pin_code` int DEFAULT NULL," +
                        "`username` varchar(15) DEFAULT NULL," +
                        "`password` varchar(64) DEFAULT NULL," +
@@ -216,6 +217,7 @@ def create_table(cursor):
                        "`locality` varchar(25) NOT NULL,"+
                        "`city` varchar(20) NOT NULL,"+
                        "`state` varchar(30) NOT NULL,"+
+                       "`country` varchar(20) NOT NULL," +
                        "`pin_code` int NOT NULL,"+
                        "`dob` date DEFAULT NULL,"+
                        "`department` varchar(20) NOT NULL,"+
