@@ -24,7 +24,7 @@ item_id,company_name,item_name,qty,price,category,discount
 5537,Murray-Schiller,Tennis_racket,87,46,Sports,6
 9864,Nolan Group,Fitness_band,88,68,Electronics,6
 5068,Wuckert LLC,Mens_watch,28,45,Fashion,10
-4987,"Farrell, Gutmann and Gorczany",,42,66,Home,5
+4987,"Farrell, Gutmann and Gorczany",Paint,42,66,Home,5
 8171,O'Keefe Group,Screwdriver,29,75,Tools,9
 4410,"McLaughlin, Keebler and Quitzon",Play_station_5,88,94,Games,
 6622,Mertz Group,Tomato_ketchup,79,33,Grocery,5
