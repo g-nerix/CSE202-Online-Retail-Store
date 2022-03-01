@@ -50,7 +50,7 @@ def create_database(cursor):
         print("Creating new online_retail Database...")
 
     print("Found online_retail Database")
-    cursor.execute("USE online_retail;")
+        cursor.execute("USE online_retail;")
     print("Using online_retail Database...")
 
 # def populate_database():
@@ -127,7 +127,7 @@ def create_table(cursor):
                        "`qty` int NOT NULL," +
                        "`price` int NOT NULL," +
                        "`category` varchar(20) NOT NULL," +
-                       "`discount` int DEFAULT NULL," +
+                       "`discount` int DEFAULT 0," +
                        "PRIMARY KEY (`item_id`)," +
                        "CONSTRAINT `inventory_chk_1` CHECK ((`price` > 0))," +
                        "CONSTRAINT `inventory_chk_2` CHECK ((`qty` >= 0))," +
@@ -259,9 +259,8 @@ def create_table(cursor):
     # cursor.execute("DROP TABLE IF EXISTS `orders`;")
     if new_orders:
         cursor.execute("CREATE TABLE `orders` (" +
-                       "`order_id` int NOT NULL," +
+                       "`order_id` varchar(10) NOT NULL," +
                        "`order_date` date NOT NULL," +
-                       "`qty` int NOT NULL," +
                        "`cost` int NOT NULL," +
                        "`order_status` varchar(15) NOT NULL," +
                        "`payment_id` int NOT NULL," +
