@@ -259,9 +259,8 @@ def create_table(cursor):
     # cursor.execute("DROP TABLE IF EXISTS `orders`;")
     if new_orders:
         cursor.execute("CREATE TABLE `orders` (" +
-                       "`order_id` int NOT NULL," +
+                       "`order_id` varchar(10) NOT NULL," +
                        "`order_date` date NOT NULL," +
-                       "`qty` int NOT NULL," +
                        "`cost` int NOT NULL," +
                        "`order_status` varchar(15) NOT NULL," +
                        "`payment_id` int NOT NULL," +
