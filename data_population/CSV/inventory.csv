@@ -1,7 +1,7 @@
 item_id,company_name,item_name,qty,price,category,discount
-1746,Cronin and Sons,BP_Monitor,34,39,Health,
+1746,Cronin and Sons,BP_Monitor,34,39,Health,0
 5420,Cormier-Nolan,Laptop_16GB,49,35,Electronics,6
-2290,"Mann, Sipes and Jerde",Drill_Machine,33,52,Tools,
+2290,"Mann, Sipes and Jerde",Drill_Machine,33,52,Tools,0
 4288,Russel-Pouros,Black_shoes,28,51,Shoes,6
 7529,Schultz LLC,AXZ_Medicine,65,35,Health,10
 8129,"Turner, Veum and Wintheiser",White_Shirt,11,71,Fashion,7
@@ -9,12 +9,12 @@ item_id,company_name,item_name,qty,price,category,discount
 2221,"Gleichner, Sauer and Rowe",The_Alchemist,68,48,Books,5
 6627,"Boyer, Mayer and Rowe",Metal_Sheet,97,48,Industrial,7
 1637,Barrows Inc,1kg_bananas,58,70,Grocery,7
-7802,Farrell Inc,Door_lock,82,34,Home,
+7802,Farrell Inc,Door_lock,82,34,Home,0
 7815,Nienow-Kunde,Cricket_bat,41,35,Sports,7
 5384,Goldner Group,Black_trousers,14,78,Fashion,6
 2552,Hickle and Sons,Parasite,29,54,Movies,10
 5611,Breitenberg-Blanda,55_inch_TV,2,97,Electronics,6
-5322,Schmeler-Weimann,1kg_apples,58,87,Grocery,
+5322,Schmeler-Weimann,1kg_apples,58,87,Grocery,0
 9484,"Hartmann, Glover and Stark",XYZ_Toy,45,92,Kids,10
 8003,Ritchie and Sons,Lipstick,31,71,Fashion,10
 7214,"Hilll, Gibson and Wolf",Diamond_ring,98,71,Jewelry,10
@@ -43,7 +43,7 @@ item_id,company_name,item_name,qty,price,category,discount
 5376,Ruecker LLC,DFF_Toy,80,32,Kids,7
 9368,Hills-Boyle,Cricket_bat,53,76,Sports,10
 1232,Thompson and Sons,Window_AC,30,34,Electronics,5
-7177,"Runolfsdottir, Braun and Jenkins",Bread_250g,10,70,Grocery,
+7177,"Runolfsdottir, Braun and Jenkins",Bread_250g,10,70,Grocery,0
 6899,"Feil, Willms and Veum",Headphones,98,82,Electronics,10
 6951,Considine Group,Antiseptic,36,79,Health,10
 9147,"Bergstrom, Goyette and Rowe",Brown_shoes,54,82,Shoes,6
