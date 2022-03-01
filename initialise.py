@@ -165,6 +165,7 @@ def create_table(cursor):
                        "`first_name` varchar(30) NOT NULL," +
                        "`last_name` varchar(30) DEFAULT NULL," +
                        "`phone_no` bigint DEFAULT NULL," +
+                       "`email` varchar(30) NOT NULL," +
                        "`house_no` int NOT NULL," +
                        "`locality` varchar(25) NOT NULL," +
                        "`city` varchar(20) NOT NULL," +
@@ -212,6 +213,7 @@ def create_table(cursor):
                        "`first_name` varchar(30) NOT NULL,"+
                        "`last_name` varchar(30) DEFAULT NULL,"+
                        "`phone_no` bigint NOT NULL,"+
+                       "`email` varchar(30) NOT NULL,"+
                        "`doj` date NOT NULL,"+
                        "`house_no` int NOT NULL,"+
                        "`locality` varchar(25) NOT NULL,"+
