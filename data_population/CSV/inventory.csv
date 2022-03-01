@@ -26,7 +26,7 @@ item_id,company_name,item_name,qty,price,category,discount
 5068,Wuckert LLC,Mens_watch,28,45,Fashion,10
 4987,"Farrell, Gutmann and Gorczany",Paint,42,66,Home,5
 8171,O'Keefe Group,Screwdriver,29,75,Tools,9
-4410,"McLaughlin, Keebler and Quitzon",Play_station_5,88,94,Games,
+4410,"McLaughlin, Keebler and Quitzon",Play_station_5,88,94,Games,0
 6622,Mertz Group,Tomato_ketchup,79,33,Grocery,5
 4040,Mertz Inc,Football,45,47,Sports,10
 3897,Fadel LLC,Laptop_8GB,78,43,Electronics,10
