@@ -11,7 +11,7 @@ import mysql.connector
 conn = mysql.connector.connect(
     host = 'localhost',
     username = 'root',
-    password = '',
+    password = 'rupin',
     database = 'online_retail_store'
 )
 cur = conn.cursor()
@@ -305,7 +305,8 @@ def cust_main():
     add_to_cart.grid(row = 6, column=1)
     add_to_cart.place()
     def OrderBy(s):
-        tree = 0
+        for ele in tree.get_children():
+            tree.delete(ele)
         if(s=="price_asc"):
             cur.execute("SELECT * FROM INVENTORY order by price ASC;")
         elif (s =="price_desc"):
@@ -323,7 +324,7 @@ def cust_main():
         # temp =("item_id","company_name","item_name","qty","price","category","discount")
         # lbcm.insert(END, temp)
         # print(res[1])
-        tree = ttk.Treeview(fcm1, column=("c1", "c2", "c3", "c4", "c5", "c6", "c7"), show='headings', height=10)
+        """tree = ttk.Treeview(fcm1, column=("c1", "c2", "c3", "c4", "c5", "c6", "c7"), show='headings', height=10)
         tree.column("# 1", anchor=CENTER)
         tree.heading("# 1", text="Item ID")
         tree.column("# 2", anchor=CENTER)
@@ -337,7 +338,11 @@ def cust_main():
         tree.column("# 6", anchor=CENTER)
         tree.heading("# 6", text="Category")
         tree.column("# 7", anchor=CENTER, width=60)
-        tree.heading("# 7", text="Discount")
+        tree.heading("# 7", text="Discount")"""
+
+        scr_cm.grid(row=2, column=2, sticky='ns')
+        scr_cm.config(command = tree.yview)
+        scr_cm.place()
 
         m = 0;
         for i in res:
@@ -357,36 +362,38 @@ def cust_main():
         OrderBy("name_asc")
     def nd():
         OrderBy("name_desc")
-    orderby_price_asc_cm = Button(fcm, text="Order By Price Ascending", command=pa)
-    orderby_price_asc_cm.grid(row=6, column=1)
+    fcm2 = Frame(root)
+    orderby_price_asc_cm = Button(fcm2, text="Order By Price Ascending", command=pa)
+    orderby_price_asc_cm.grid(row=1, column=1)
     orderby_price_asc_cm.place()
 
-    orderby_price_desc_cm = Button(fcm, text="Order By Price Descending", command=pd)
-    orderby_price_desc_cm.grid(row=7, column=1)
+    orderby_price_desc_cm = Button(fcm2, text="Order By Price Descending", command=pd)
+    orderby_price_desc_cm.grid(row=1, column=2)
     orderby_price_desc_cm.place()
 
-    orderby_discount_asc_cm = Button(fcm, text="Order By Discount Ascending", command=da)
-    orderby_discount_asc_cm.grid(row=8, column=1)
+    orderby_discount_asc_cm = Button(fcm2, text="Order By Discount Ascending", command=da)
+    orderby_discount_asc_cm.grid(row=2, column=1)
     orderby_discount_asc_cm.place()
 
-    orderby_discount_desc_cm = Button(fcm, text="Order By Discount Descending", command=dd)
-    orderby_discount_desc_cm.grid(row=9, column=1)
+    orderby_discount_desc_cm = Button(fcm2, text="Order By Discount Descending", command=dd)
+    orderby_discount_desc_cm.grid(row=2, column=2)
     orderby_discount_desc_cm.place()
 
-    orderby_name_asc_cm = Button(fcm, text="Order By Item Name Ascending", command=na)
-    orderby_name_asc_cm.grid(row=10, column=1)
+    orderby_name_asc_cm = Button(fcm2, text="Order By Item Name Ascending", command=na)
+    orderby_name_asc_cm.grid(row=3, column=1)
     orderby_name_asc_cm.place()
 
-    orderby_name_desc_cm = Button(fcm, text="Order By Item Name Descending", command=nd)
-    orderby_name_desc_cm.grid(row=11, column=1)
+    orderby_name_desc_cm = Button(fcm2, text="Order By Item Name Descending", command=nd)
+    orderby_name_desc_cm.grid(row=3, column=2)
     orderby_name_desc_cm.place()
 
-    logout_cm = Button(fcm, text="Logout", command = logout)
-    logout_cm.grid(row=12, column=1)
+    logout_cm = Button(fcm2, text="Logout", command = logout)
+    logout_cm.grid(row=4, column=1)
     logout_cm.place()
     
     fcm1.pack()
     fcm.pack()
+    fcm2.pack()
 
 
 def add2cart():
