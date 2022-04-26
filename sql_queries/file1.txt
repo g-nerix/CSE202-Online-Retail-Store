@@ -3,4 +3,7 @@ select concat(concat(convert(age,char),"-"),convert(age+2,char)) as age_group, a
 over (order by age rows 2 preceding ) as avg_salary 
 from (select avg(salary) as ags, (year(curdate()) - year(dob)) as age from employee group by age) as t1;
 
-2: 
+2: finding the top selling products along with rank and qty sold (advanced aggregation fn)
+select rank() over (order by tot_sales desc) as top_selling, item_id, tot_sales 
+from (select item_id, sum(qty) as tot_sales from order_item group by item_id) as t1;
+
