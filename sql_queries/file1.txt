@@ -1,0 +1,6 @@
+1: for finding average salary in age groups of size 3 (advanced aggregation fn):
+select concat(concat(convert(age,char),"-"),convert(age+2,char)) as age_group, avg(ags) 
+over (order by age rows 2 preceding ) as avg_salary 
+from (select avg(salary) as ags, (year(curdate()) - year(dob)) as age from employee group by age) as t1;
+
+2: 
