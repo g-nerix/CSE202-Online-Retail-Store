@@ -7,3 +7,8 @@ from (select avg(salary) as ags, (year(curdate()) - year(dob)) as age from emplo
 select rank() over (order by tot_sales desc) as top_selling, item_id, tot_sales 
 from (select item_id, sum(qty) as tot_sales from order_item group by item_id) as t1;
 
+3. list of suppliers who supply to every pincode where a customer lives
+
+4. list of items which can be delivered to a particular customer according to his pincode
+
+5. delivery person can see which orders (order_id, address) are to be delivered on a particular day (using his serviced pincodes, and date diff (cur_date - ord_date)>1)
