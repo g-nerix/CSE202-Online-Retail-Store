@@ -18,6 +18,9 @@ select item_name, avg(order_item.qty)/(select count(order_id) from orders) from
 order_item, inventory where (order_item.item_id = inventory.item_id)
 group by inventory.item_id having (avg(order_item.qty)/(select count(order_id) from orders)>0.5);
 
-7. SELECT orders.order_id FROM orders, order_item, inventory WHERE orders.order_id = order_item.order_id AND order_item.item_id = inventory.item_id HAVING COUNT(inventory.category = 'grocery') >1;  
+7. orders having more than one item from grocery department 
+SELECT orders.order_id FROM orders, order_item, inventory WHERE orders.order_id = order_item.order_id AND order_item.item_id = inventory.item_id HAVING COUNT(inventory.category = 'grocery') >1;  
 
 8. average cart value of people living in a particular region
+
+9. suppliers who supply products of atleast 3 distinct companies
