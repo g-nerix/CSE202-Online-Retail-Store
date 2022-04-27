@@ -12,3 +12,12 @@ from (select item_id, sum(qty) as tot_sales from order_item group by item_id) as
 4. list of items which can be delivered to a particular customer according to his pincode
 
 5. delivery person can see which orders (order_id, address) are to be delivered on a particular day (using his serviced pincodes, and date diff (cur_date - ord_date)>1)
+
+6. item names for those whose average qty per order greater than 0.5
+select item_name, avg(order_item.qty)/(select count(order_id) from orders) from
+order_item, inventory where (order_item.item_id = inventory.item_id)
+group by inventory.item_id having (avg(order_item.qty)/(select count(order_id) from orders)>0.5);
+
+7. SELECT orders.order_id FROM orders, order_item, inventory WHERE orders.order_id = order_item.order_id AND order_item.item_id = inventory.item_id HAVING COUNT(inventory.category = 'grocery') >1;  
+
+8. average cart value of people living in a particular region
