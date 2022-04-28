@@ -8,6 +8,7 @@ select rank() over (order by tot_sales desc) as top_selling, item_id, tot_sales
 from (select item_id, sum(qty) as tot_sales from order_item group by item_id) as t1;
 
 3. list of suppliers who supply to every pincode where a customer lives
+select s.co_id, s.co_name from supplier s where not exists(select distinct(c.pin_code) from customer c where (not exists(select sa.co_id from supply_areas sa where sa.co_id = s.co_id and sa.pincode = c.pin_code)));
 
 4. list of items which can be delivered to a particular customer according to his pincode
 
