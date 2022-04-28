@@ -24,6 +24,7 @@ group by inventory.item_id having (avg(order_item.qty)/(select count(order_id) f
 SELECT orders.order_id FROM orders, order_item, inventory WHERE orders.order_id = order_item.order_id AND order_item.item_id = inventory.item_id HAVING COUNT(inventory.category = 'grocery') >1;  
 
 8. average cart value of people living in a particular region
+select sum(ci.cost*ci.qty)/count(rel.cart_id), c.state from cart_item ci, cust_cart_rel rel, customer c where ci.cart_id = rel.cart_id and rel.cust_id = c.cust_id group by c.state;
 
 9. suppliers who supply products of atleast 3 distinct companies
 select s.co_id, s.co_name from supplier s where (select count(distinct i.company_name) from inventory i where i.item_id in (select sb.item_id from supplied_by sb where sb.co_id = s.co_id))>=3;
