@@ -11,6 +11,7 @@ from (select item_id, sum(qty) as tot_sales from order_item group by item_id) as
 select s.co_id, s.co_name from supplier s where not exists(select distinct(c.pin_code) from customer c where (not exists(select sa.co_id from supply_areas sa where sa.co_id = s.co_id and sa.pincode = c.pin_code)));
 
 4. list of items which can be delivered to a particular customer according to his pincode
+select i.item_id,i.company_name, i.item_name, i.price, i.category, i.discount from inventory i where exists(select co_id from supplies_item s where s.item_id = i.item_id and co_id in(select co_id from supply_areas sa where sa.pincode = 123400));
 
 5. delivery person can see which orders (order_id, address) are to be delivered on a particular day (using his serviced pincodes, and date diff (cur_date - ord_date)>1)
 
