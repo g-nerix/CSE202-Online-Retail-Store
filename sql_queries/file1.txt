@@ -25,3 +25,4 @@ SELECT orders.order_id FROM orders, order_item, inventory WHERE orders.order_id 
 8. average cart value of people living in a particular region
 
 9. suppliers who supply products of atleast 3 distinct companies
+select s.co_id, s.co_name from supplier s where (select count(distinct i.company_name) from inventory i where i.item_id in (select sb.item_id from supplied_by sb where sb.co_id = s.co_id))>=3;
