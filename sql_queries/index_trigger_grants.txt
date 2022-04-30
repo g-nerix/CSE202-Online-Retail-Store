@@ -12,6 +12,10 @@ grant insert on inventory to employee_role;
 grant select on emp_view_emp to employee_role;
 grant select on cust_view_contact to customer_role;
 grant select on cust_view_aboutus to customer_role;
+create role supplier;
+grant select on inventory to supplier;
+grant update on inventory to supplier;
+grant insert on inventory to supplier;
 
 Triggers:
 delimiter $$
