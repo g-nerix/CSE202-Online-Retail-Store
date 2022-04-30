@@ -33,7 +33,7 @@ select o.order_id from orders as o where (select count(i.item_id) from inventory
 8. average cart value of people living in a particular region
 select sum(ci.cost*ci.qty)/count(rel.cart_id), c.state from cart_item ci, cust_cart_rel rel, customer c where ci.cart_id = rel.cart_id and rel.cust_id = c.cust_id group by c.state;
 
-9. suppliers who supply products of atleast 40 distinct companies (VERIFIED)
+9. suppliers who supply products of atleast 40 distinct companies
 select s.co_id, s.co_name from supplier s where (select count(distinct i.company_name) from inventory i where i.item_id in (select si.item_id from supplies_item si where si.co_id = s.co_id))>=40;
 
 10. find number of orders by month in which the variety of products sold is high (number of distinct products >=5)
