@@ -38,3 +38,6 @@ select s.co_id, s.co_name from supplier s where (select count(distinct i.company
 
 10. find number of orders by month in which the variety of products sold is high (number of distinct products >=5)
 select count(order_id), month(order_date) from orders o where (select count(distinct(item_id)) from order_item where order_id = o.order_id)>=5 group by month(o.order_date);
+
+11. find details of items which are supplied by at least 2 different suppliers
+select distinct(i.item_id), i.item_name from inventory i INNER JOIN supplies_item si on i.item_id = si.item_id where exists (select si1.co_id from supplies_item si1 where si1.item_id = si.item_id and si1.co_id!=si.co_id);
