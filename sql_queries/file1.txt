@@ -12,6 +12,7 @@ select s.co_id, s.co_name from supplier s where not exists(select distinct(c.pin
 
 4. list of items which can be delivered to a particular customer according to his pincode (VERIFIED)
 select i.item_id,i.company_name, i.item_name, i.price, i.category, i.discount from inventory i where exists(select co_id from supplies_item s where s.item_id = i.item_id and co_id in(select co_id from supply_areas sa where sa.pincode = 123400));
+select i.item_id,i.company_name, i.item_name, i.price, i.category, i.discount from inventory i where exists(select co_id from supplies_item s where s.item_id = i.item_id and exists (select co_id from supply_areas sa where sa.pincode = 123400 and co_id = s.co_id)); (OPTIMISED)
 
 
 
