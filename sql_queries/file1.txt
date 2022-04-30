@@ -17,8 +17,9 @@ select i.item_id,i.company_name, i.item_name, i.price, i.category, i.discount fr
 
 
 5. delivery person can see which orders (order_id, address) are to be delivered on a particular day (using his serviced pincodes, and date diff (cur_date - ord_date)>1) (VERIFIED)
-select o.order_id, c.house_no, c.locality, c.city, c.state, c.pin_code, o.cost from orders o, customer c, cust_order_rel rel where rel.order_id = o.order_id and rel.cust_id = c.cust_id and o.order_status = 'shipped' and o.order_date <curdate()-2 and c.pin_code in (select pincode from works_in_pincodes where dlvr_id = 1); 
-select o.order_id, c.house_no, c.locality, c.city, c.state, c.pin_code, o.cost from orders o INNER JOIN cust_order_rel rel on rel.order_id = o.order_id INNER JOIN customer c on rel.cust_id = c.cust_id where o.order_status = 'shipped' and o.order_date <curdate()-2 and c.pin_code in (select pincode from works_in_pincodes where dlvr_id = 1);  (OPTIMISED)
+select o.order_id, c.house_no, c.locality, c.city, c.state, c.pin_code, o.cost from orders o INNER JOIN cust_order_rel rel on rel.order_id = o.order_id INNER JOIN customer c on rel.cust_id = c.cust_id where o.order_status = 'shipped' and o.order_date <curdate()-2 and c.pin_code in (select pincode from works_in_pincodes where dlvr_id = 1);  
+select o.order_id, c.house_no, c.locality, c.city, c.state, c.pin_code, o.cost from orders o INNER JOIN cust_order_rel rel on rel.order_id = o.order_id INNER JOIN customer c on rel.cust_id = c.cust_id where o.order_status = 'shipped' and o.order_date <curdate()-2 and exists (select pincode from works_in_pincodes where dlvr_id = 1 and c.pin_code = pincode); (OPTIMISED)
+
 
 6. item names for those whose average qty per order greater than 0.5
 select item_name, avg(order_item.qty)/(select count(order_id) from orders) from
