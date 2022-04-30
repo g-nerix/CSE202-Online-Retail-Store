@@ -12,3 +12,20 @@ grant insert on inventory to employee_role;
 grant select on emp_view_emp to employee_role;
 grant select on cust_view_contact to customer_role;
 grant select on cust_view_aboutus to customer_role;
+
+Triggers:
+delimiter $$
+create trigger cart_upd_cost after update on inventory for each row begin
+if (new.visibility = 1 and old.visibility =1) then
+update cart_item as c set c.cost = new.price*(1-new.discount/100) where c.item_id = new.item_id;
+end if;
+if (new.visibility=0 and old.visibility =1) then
+delete from cart_item as c where c.item_id = new.item_id;
+end if;
+end; $$
+
+create trigger make_new_carts after insert on customer for each row begin 
+insert into cart(cart_id, qty, cost) values(new.cust_id+100,0,0);
+insert into cust_cart_rel values (new.cust_id, new.cust_id+100); 
+end; $$
+delimiter ;
