@@ -29,3 +29,10 @@ insert into cart(cart_id, qty, cost) values(new.cust_id+100,0,0);
 insert into cust_cart_rel values (new.cust_id, new.cust_id+100); 
 end; $$
 delimiter ;
+
+Index:
+create index inv_price on inventory (price);
+create index emp_salary on employee (salary);
+create index inv_discount on inventory (discount);
+create index inv_vis on inventory (visibility);
+create index ord_date on orders (order_date);
