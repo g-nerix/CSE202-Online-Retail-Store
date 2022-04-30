@@ -35,3 +35,6 @@ select sum(ci.cost*ci.qty)/count(rel.cart_id), c.state from cart_item ci, cust_c
 
 9. suppliers who supply products of atleast 40 distinct companies (VERIFIED)
 select s.co_id, s.co_name from supplier s where (select count(distinct i.company_name) from inventory i where i.item_id in (select si.item_id from supplies_item si where si.co_id = s.co_id))>=40;
+
+10. find number of orders by month in which the variety of products sold is high (number of distinct products >=5)
+select count(order_id), month(order_date) from orders o where (select count(distinct(item_id)) from order_item where order_id = o.order_id)>=5 group by month(o.order_date);
