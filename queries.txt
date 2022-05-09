@@ -1,0 +1,43 @@
+1: for finding average salary in age groups of size 3 (advanced aggregation fn):
+select concat(concat(convert(age,char),"-"),convert(age+2,char)) as age_group, avg(ags) 
+over (order by age rows 2 preceding ) as avg_salary 
+from (select avg(salary) as ags, (year(curdate()) - year(dob)) as age from employee group by age) as t1;
+
+2: finding the top selling products along with rank and qty sold (advanced aggregation fn)
+select rank() over (order by tot_sales desc) as top_selling, item_id, tot_sales 
+from (select item_id, sum(qty) as tot_sales from order_item group by item_id) as t1;
+
+3. list of suppliers who supply to every pincode where a customer lives 
+select s.co_id, s.co_name from supplier s where not exists(select distinct(c.pin_code) from customer c where (not exists(select sa.co_id from supply_areas sa where sa.co_id = s.co_id and sa.pincode = c.pin_code)));
+
+4. list of items which can be delivered to a particular customer according to his pincode 
+select i.item_id,i.company_name, i.item_name, i.price, i.category, i.discount from inventory i where exists(select co_id from supplies_item s where s.item_id = i.item_id and co_id in(select co_id from supply_areas sa where sa.pincode = 123400));
+select i.item_id,i.company_name, i.item_name, i.price, i.category, i.discount from inventory i where exists(select co_id from supplies_item s where s.item_id = i.item_id and exists (select co_id from supply_areas sa where sa.pincode = 123400 and co_id = s.co_id)); (OPTIMISED)
+
+
+
+5. delivery person can see which orders (order_id, address) are to be delivered on a particular day (using his serviced pincodes, and date diff (cur_date - ord_date)>1) 
+select o.order_id, c.house_no, c.locality, c.city, c.state, c.pin_code, o.cost from orders o INNER JOIN cust_order_rel rel on rel.order_id = o.order_id INNER JOIN customer c on rel.cust_id = c.cust_id where o.order_status = 'shipped' and o.order_date <curdate()-2 and c.pin_code in (select pincode from works_in_pincodes where dlvr_id = 1);  
+select o.order_id, c.house_no, c.locality, c.city, c.state, c.pin_code, o.cost from orders o INNER JOIN cust_order_rel rel on rel.order_id = o.order_id INNER JOIN customer c on rel.cust_id = c.cust_id where o.order_status = 'shipped' and o.order_date <curdate()-2 and exists (select pincode from works_in_pincodes where dlvr_id = 1 and c.pin_code = pincode); (OPTIMISED)
+
+
+6. item names for items each of which have atleast 0.003 as the mean value of quantity ordered in an order (less than 1 because several orders have 0 qty of any item)
+select item_name, avg(order_item.qty)/(select count(order_id) from orders) from
+order_item, inventory where (order_item.item_id = inventory.item_id)
+group by inventory.item_id having (avg(order_item.qty)/(select count(order_id) from orders)>0.003);
+
+7. orders having more than 3 items from grocery department 
+select o.order_id from orders as o where (select count(i.item_id) from inventory as i, order_item as oi where oi.order_id = o.order_id and i.category = 'grocery' and i.item_id = oi.item_id)>3;  
+
+
+8. average cart value of people living in a particular region
+select sum(ci.cost*ci.qty)/count(rel.cart_id), c.state from cart_item ci, cust_cart_rel rel, customer c where ci.cart_id = rel.cart_id and rel.cust_id = c.cust_id group by c.state;
+
+9. suppliers who supply products of atleast 40 distinct companies
+select s.co_id, s.co_name from supplier s where (select count(distinct i.company_name) from inventory i where i.item_id in (select si.item_id from supplies_item si where si.co_id = s.co_id))>=40;
+
+10. find number of orders by month in which the variety of products sold is high (number of distinct products >=5)
+select count(order_id), month(order_date) from orders o where (select count(distinct(item_id)) from order_item where order_id = o.order_id)>=5 group by month(o.order_date);
+
+11. find details of items which are supplied by at least 2 different suppliers
+select distinct(i.item_id), i.item_name from inventory i INNER JOIN supplies_item si on i.item_id = si.item_id where exists (select si1.co_id from supplies_item si1 where si1.item_id = si.item_id and si1.co_id!=si.co_id);

@@ -1,0 +1,42 @@
+create view cust_view_inv as select item_id, company_name, item_name, price, category, discount from inventory where visibility = 1 and qty>0;
+create view emp_view_emp as select emp_id, first_name, last_name, phone_no, email_id, city, department from employee; 
+create view cust_view_contact as select first_name, last_name, phone_no, email_id from employee where department = 'customer_service';
+create view cust_view_aboutus as select first_name, last_name, email_id from employee where department = 'management';
+create role customer_role;
+grant select on cust_view_inv to customer_role;
+create role employee_role;
+grant select on inventory to employee_role;
+grant update on inventory to employee_role;
+grant delete on inventory to employee_role;
+grant insert on inventory to employee_role;
+grant select on emp_view_emp to employee_role;
+grant select on cust_view_contact to customer_role;
+grant select on cust_view_aboutus to customer_role;
+create role supplier;
+grant select on inventory to supplier;
+grant update on inventory to supplier;
+grant insert on inventory to supplier;
+
+Triggers:
+delimiter $$
+create trigger cart_upd_cost after update on inventory for each row begin
+if (new.visibility = 1 and old.visibility =1) then
+update cart_item as c set c.cost = new.price*(1-new.discount/100) where c.item_id = new.item_id;
+end if;
+if (new.visibility=0 and old.visibility =1) then
+delete from cart_item as c where c.item_id = new.item_id;
+end if;
+end; $$
+
+create trigger make_new_carts after insert on customer for each row begin 
+insert into cart(cart_id, qty, cost) values(new.cust_id+100,0,0);
+insert into cust_cart_rel values (new.cust_id, new.cust_id+100); 
+end; $$
+delimiter ;
+
+Index:
+create index inv_price on inventory (price);
+create index emp_salary on employee (salary);
+create index inv_discount on inventory (discount);
+create index inv_vis on inventory (visibility);
+create index ord_date on orders (order_date);
